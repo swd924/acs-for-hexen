@@ -79,3 +79,12 @@ script 7 (void) {
   // * optional because it isn't necessary to set a back texture of a "gate" the player sees
   // only from the front.
 }
+
+//lowers a floor height to the height of the lowest surrounding floors
+script 8 (void)
+{
+  Floor_LowerToNearest(5, 32);
+  // change values to suit
+  // 5 = sector tag
+  // 32 = speed
+}
