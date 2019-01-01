@@ -1,0 +1,32 @@
+#include "common.acs"
+//must have this statment at the top of all Hexen ACS
+
+script 1 (void)
+{
+  //close entrance door
+	Door_Close(2, 128);
+  // change values to suit
+  // 2 = sector tag
+  // 128 = speed
+
+	int wraithNumber = 0;
+	//spawn reiver/wraith at spawn ID
+  while (wraithNumber < 25) {
+    Thing_Spawn(1, T_WRAITH, 0);
+    // change values to suit
+    // 1 = sector tag
+    // T_WRAITH = monster name
+    // 0 = angle
+    // a 4th value can be added for newTID but it isn't needed in this context
+    delay(75);
+    wraithNumber ++;
+    }
+
+    //open entrance and exit doors once 25 wraiths have spawned
+    Door_Open(8, 32);
+	  Door_Open(2, 32);
+    // change values to suit
+    // 8/2 = sector tag
+    // 32 = speed
+
+    }
