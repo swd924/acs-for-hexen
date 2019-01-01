@@ -1,0 +1,81 @@
+#include "common.acs"
+//all Hexen ACS scripts must have the above line
+
+//prints a statement
+script 1 (void)
+{
+  print(s:"Text to output on the screen");
+}
+
+//builds stairs defined with linedefs when ending heights less than their starting height
+script 2 (void)
+{
+  Stairs_BuildDown(5, 60, 16, 0, 0);
+  
+  //change the values in parentheses to suit
+  // 5 = sector tag
+  // 60 = speed in tics
+  // 16 = distance downward
+  // 0 = tics between movement of each step
+  // 0 = tics until stairs reset to original positions
+}
+
+//opens a door
+script 3 (void)
+{
+  Door_Open(21, 32);
+  // change values to suit
+  // 21 = sector tag
+  // 32 = speed in tics
+}
+
+//teleports from hub to spoke level
+script 4 (void)
+{
+  Teleport_NewMap(2, 0);
+  // change values to suit
+  // 2 = map number
+  // 0 = pos
+  // note about "pos": this is not a sector tag, it the value you set for Argument 1 of a Player1Start
+  // at the location the player will teleport to. There can be MULTIPLE P1S's with Arg 1 = 0 in a HUB but the
+  // P1S's in a LEVEL must be UNIQUE
+}
+
+//executes ACS in a different level
+script 5 (void)
+{
+  ACS_Execute(6, 2, 0, 0, 0);
+  // change values to suit
+  // 6 = ACS script number in the target level
+  // 2 = target map the script will execute within
+  // 0 = arg1
+  // 0 = arg2
+  // 0 = arg3
+  // if args not required, set them to 0 but don't omit
+}
+
+//raises floor
+script 6 (void)
+{
+  Floor_RaiseByValue(6, 60, 64);
+  // change values to suit
+  // 6 = sector tag
+  // 60 = speed in tics
+  // 64 = height
+}
+
+// "opens" a "gate", eg. removes a transparent, block-everything texture from a linedef to make
+// it passible by the player
+script 7 (void) {
+  // removes the "block everything" property
+  SetLineBlocking(3, OFF);
+  
+  // remove the front texture
+  SetLineTexture(3, SIDE_FRONT, TEXTURE_MIDDLE, "-");
+  
+  // removes the back texture (optional*)
+  SetLineTexture(3, SIDE_BACK, TEXTURE_MIDDLE, "-");
+  
+  // * optional because it isn't necessary to set a back texture of a "gate" the player sees
+  // only from the front.
+}
